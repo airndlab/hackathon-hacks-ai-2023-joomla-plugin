@@ -1,0 +1,27 @@
+name: Zip chatbot
+
+on:
+  release:
+    types:
+      - created
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v3
+
+      - name: Archive chatbot
+        uses: thedoctor0/zip-release@0.7.1
+        with:
+          type: 'zip'
+          filename: 'chatbot.zip'
+          directory: 'chatbot'
+
+      - name: Upload chatbot
+        uses: ncipollo/release-action@v1.12.0
+        with:
+          artifacts: 'chatbot.zip'
+          token: ${{ secrets.GITHUB_TOKEN }}
