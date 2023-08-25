@@ -15,9 +15,9 @@ jobs:
 
       - name: Get release
         id: get_release
-        uses: bruceadams/get-release@v1.3.2
+        uses: joutvhu/get-release@v1
         env:
-          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Archive chatbot
         uses: thedoctor0/zip-release@0.7.1
