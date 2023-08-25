@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="plugin" group="content" version="3.0" method="upgrade">
+    <name>Чатбот</name>
+    <creationDate>August 2023</creationDate>
+    <author>Vitaliy Grachev</author>
+    <authorEmail>gravitaliy@email.com</authorEmail>
+    <version>1.0.0</version>
+    <description>Чатбот</description>
+    <files>
+        <filename plugin="chatbot">chatbot.php</filename>
+        <folder>assets</folder>
+    </files>
+    <config>
+        <fields name="params">
+            <fieldset name="basic">
+                <field
+                    name="test"
+                    type="text"
+                    description="Введите текст тестовой переменной"
+                    label="тестовая переменная"
+                    filter="string"
+                    default=""
+                    size="30"
+                />
+            </fieldset>
+        </fields>
+    </config>
+</extension>
