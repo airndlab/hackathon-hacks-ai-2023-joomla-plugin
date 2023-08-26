@@ -2,16 +2,26 @@
 defined('_JEXEC') or die;
 
 class PlgContentChatbot extends JPlugin {
-  public function onContentBeforeDisplay($context, &$row, &$params, $page = 0) {
-    $param = $this->params->get('test', 'defaultValue');
-    return "<h2>".$param."</h2>";
+  public function onContentBeforeDisplay() {
+    JFactory::getDocument()->addStyleSheet('https://fonts.googleapis.com/icon?family=Material+Icons');
+    JFactory::getDocument()->addStyleSheet(JUri::base() . 'plugins/content/chatbot/assets/css/styles.css');
+    JHtml::_('bootstrap.framework');
+    JFactory::getDocument()->addScript(JUri::base() . 'plugins/content/chatbot/assets/js/scripts.js');
   }
 
   public function onAfterRender() {
-    $html = file_get_contents(JURI::root() . 'plugins/content/chatbot/assets/html/chatbot.html');
-    $buffer = JResponse::getBody();
-    $buffer = str_replace('</body>', $html . '</body>', $buffer);
-    JResponse::setBody($buffer);
+    $app = JFactory::getApplication();
+    $body = $app->getBody();
+    $isAdministratorPage = $app->isAdmin();
+
+    if (!$isAdministratorPage) {
+      $params = $this->params;
+      ob_start();
+      include(__DIR__ . '/assets/templates/chatbot.php');
+      $customMarkup = ob_get_clean();
+      $body = str_replace('</body>', $customMarkup . '</body>', $body);
+      $app->setBody($body);
+    }
 
     return true;
   }

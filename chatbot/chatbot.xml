@@ -4,7 +4,7 @@
     <creationDate>August 2023</creationDate>
     <author>Neuro Drive</author>
     <authorEmail>gravitaliy@mail.ru</authorEmail>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <description>Чатбот</description>
     <files>
         <filename plugin="chatbot">chatbot.php</filename>
@@ -14,13 +14,33 @@
         <fields name="params">
             <fieldset name="basic">
                 <field
-                    name="test"
-                    type="text"
-                    description="Введите текст тестовой переменной"
-                    label="тестовая переменная"
-                    filter="string"
-                    default=""
-                    size="30"
+                    name="hello_text"
+                    type="textarea"
+                    label="Приветствие"
+                    description="Введите текст приветствие"
+                    rows="3"
+                    default="Добро пожаловать!"
+                    required="true"
+                />
+                <field
+                    name="hello_text_additional"
+                    type="textarea"
+                    label="Доп. текст приветствия"
+                    description="Дополнительное обращение под приветствием"
+                    rows="3"
+                    default="Напишите ваш запрос"
+                    required="true"
+                />
+                <field
+                    name="url"
+                    type="url"
+                    label="Адрес сервиса"
+                    description="Введите url адрес сервиса"
+                    size="50"
+                    filter="url"
+                    required="true"
+                    validate="url"
+                    default="https://api.hacks-ai.ycdev.ru"
                 />
             </fieldset>
         </fields>
