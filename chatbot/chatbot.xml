@@ -4,7 +4,7 @@
     <creationDate>August 2023</creationDate>
     <author>Neuro Drive</author>
     <authorEmail>gravitaliy@mail.ru</authorEmail>
-    <version>1.0.3</version>
+    <version>1.0.4</version>
     <description>Чатбот</description>
     <files>
         <filename plugin="chatbot">chatbot.php</filename>

@@ -41,3 +41,7 @@
     </div>
   </div>
 </div>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="<?php echo JUri::base() . 'plugins/content/chatbot/assets/css/styles.css' ?>">
+<script src="<?php echo JUri::base() . 'plugins/content/chatbot/assets/js/scripts.js' ?>"></script>
