@@ -4,7 +4,7 @@
     <creationDate>August 2023</creationDate>
     <author>Neuro Drive</author>
     <authorEmail>gravitaliy@mail.ru</authorEmail>
-    <version>1.0.4</version>
+    <version>1.0.5</version>
     <description>Чатбот</description>
     <files>
         <filename plugin="chatbot">chatbot.php</filename>
@@ -32,15 +32,15 @@
                     required="true"
                 />
                 <field
-                    name="url"
+                    name="url_api"
                     type="url"
                     label="Адрес сервиса"
-                    description="Введите url адрес сервиса"
+                    description="Введите адрес сервиса"
                     size="50"
                     filter="url"
                     required="true"
                     validate="url"
-                    default="https://api.hacks-ai.ycdev.ru"
+                    default="https://api.hacks-ai.ycdev.ru/api/v1/question/"
                 />
             </fieldset>
         </fields>

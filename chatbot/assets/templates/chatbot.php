@@ -30,7 +30,7 @@
         <form
           class="content-typing-form"
           id="js-submit-form"
-          action="<?php echo $params->get('url', 'https://api.hacks-ai.ycdev.ru'); ?>/api/v1/question/"
+          action="<?php echo $params->get('url_api', 'https://api.hacks-ai.ycdev.ru/api/v1/question/'); ?>"
         >
           <input class="content-typing-input" id="js-input" type="text" placeholder="Введите запрос">
           <button class="content-typing-send-btn js-submit-btn" disabled>
