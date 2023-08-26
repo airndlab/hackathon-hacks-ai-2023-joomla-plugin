@@ -2,8 +2,8 @@
 <extension type="plugin" group="content" version="3.0" method="upgrade">
     <name>Чатбот</name>
     <creationDate>August 2023</creationDate>
-    <author>Vitaliy Grachev</author>
-    <authorEmail>gravitaliy@email.com</authorEmail>
+    <author>Neuro Drive</author>
+    <authorEmail>gravitaliy@mail.ru</authorEmail>
     <version>1.0.0</version>
     <description>Чатбот</description>
     <files>

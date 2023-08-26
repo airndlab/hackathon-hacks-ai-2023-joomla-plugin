@@ -1,16 +1,400 @@
 <div id="chatbot-container">
   <div id="chatbot-icon">
-    <img src="plugins/content/chatbot/assets/img/icon.png" alt="Chatbot Icon">
+    <img src="plugins/content/chatbot/assets/img/assistant.png" alt="Chatbot_Icon">
   </div>
   <div id="chatbot-widget">
-    <div id="chat-messages">
-      <!-- Здесь будут отображаться сообщения чата -->
+    <div class="chatbot-header">
+      <div class="close-icon js-close-icon">
+        <i class="material-icons">close</i>
+      </div>
     </div>
-    <div id="user-input">
-      <input type="text" id="input-text" placeholder="Введите ваш вопрос">
-      <button id="send-button">Отправить</button>
+    <div class="content-wrap js-content-wrap">
+      <div class="content js-content">
+        <div>
+          <div class="content-answer">
+            Добро пожаловать, меня зовут ассистент Валера! <br><br>
+            Напишите ваш запрос
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content-footer">
+      <div class="content-typing-assistant">
+        <img src="plugins/content/chatbot/assets/img/assistant.png" alt="">
+      </div>
+      <div class="content-typing">
+        <form class="content-typing-form" id="js-submit-form">
+          <input class="content-typing-input" id="js-input" type="text" placeholder="Введите запрос">
+          <button class="content-typing-send-btn js-submit-btn" disabled>
+            <i class="material-icons">send</i>
+          </button>
+        </form>
+      </div>
     </div>
   </div>
 </div>
-<link rel="stylesheet" href="plugins/content/chatbot/assets/css/chatbot.css">
-<script src="plugins/content/chatbot/assets/js/chatbot.js"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<style>
+  :root {
+    --content-max-width: 800px;
+  }
+
+  #chatbot-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+  }
+
+  #chatbot-icon {
+    width: 70px;
+    height: 70px;
+    cursor: pointer;
+  }
+
+  /* modal */
+
+  #chatbot-widget {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    top: 0;
+    /*background-color: #472B1F;*/
+    /*background: linear-gradient(180deg, #472B1F,rgba(195, 147, 103) 134.42%);*/
+    background: linear-gradient(180deg, #805343,rgba(195, 147, 103) 134.42%);
+    /*background: linear-gradient(180deg,rgba(195, 147, 103), #DEBFA0 134.42%);*/
+  }
+
+  /* close icon */
+
+  .chatbot-header {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    padding: 16px 0;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  @media (max-width: 1100px) {
+    .chatbot-header {
+      padding-top: 6px;
+      padding-bottom: 6px;
+      backdrop-filter: blur(20px);
+    }
+  }
+
+    .close-icon {
+    margin-right: 72px;
+    /*top: 16px;*/
+    /*right: 72px;*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    color: white;
+    background-color: #ffffff2b;
+  }
+  .close-icon:hover {
+    background-color: #ffffff52;
+  }
+
+  @media (max-width: 1100px) {
+    .close-icon {
+      margin-right: 18px;
+    }
+  }
+
+  /* content */
+
+  .content-wrap {
+    height: calc(100vh - 88px);
+    overflow: auto;
+    display: flex;
+    justify-content: center;
+  }
+
+  .content {
+    margin-top: auto;
+    width: 100%;
+    max-width: var(--content-max-width);
+    padding: 0 12px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .content-answer {
+    word-break: break-word;
+    display: inline-block;
+    margin-top: 8px;
+    background: white;
+    /*background: rgb(98, 59, 42);*/
+    border-radius: 16px 16px 16px 4px;
+    max-width: 80%;
+    padding: 8px 12px;
+    /*color: white;*/
+  }
+
+  .content-question-wrap {
+    margin-top: 8px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .content-question {
+    word-break: break-word;
+    display: inline-block;
+    /*background-color: #e4ecfd;*/
+    background-color: #DEBFA0;
+    /*background-color: #F0DAC4;*/
+    /*background-color: rgb(195, 147, 103);*/
+    /*color: white;*/
+    border-radius: 16px 16px 4px;
+    padding: 8px 12px;
+    max-width: 80%;
+  }
+
+  .content-footer {
+    position: relative;
+    margin-top: 16px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 12px;
+    max-width: var(--content-max-width);;
+  }
+
+  .content-typing-assistant {
+    position: absolute;
+    bottom: 10px;
+    left: -216px;
+    width: 150px;
+  }
+  
+  @media (max-width: 1250px) {
+    .content-typing-assistant {
+      left: -152px;
+    }
+  }
+
+  @media (max-width: 1100px) {
+    .content-typing-assistant {
+      display: none;
+    }
+  }
+
+  .content-typing {
+    padding: 8px 12px;
+    background: white;
+    border-radius: 8px;
+    /*overflow: hidden;*/
+    height: 52px;
+    box-sizing: border-box;
+  }
+
+  .error-icon {
+    color: #f44336;
+    margin-right: 4px;
+  }
+
+  .content-typing-form {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0;
+  }
+
+  .content-typing-input {
+    margin-bottom: 0 !important;
+    padding: 0 !important;
+    height: 36px !important;
+    border: none !important;
+    flex: 1;
+    font-size: 18px !important;
+    box-shadow: none !important;
+  }
+
+  .content-typing-send-btn {
+    height: 28px;
+    width: 28px;
+    margin-left: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #472B1F;
+    box-shadow: none;
+    background-color: transparent;
+    background: none;
+    cursor: pointer;
+    border: 0;
+    padding: 0;
+  }
+
+  .content-typing-send-btn:disabled {
+    /*color: rgba(195, 147, 103);*/
+    color: #DEBFA0;
+    cursor: auto;
+  }
+
+  /* content-answer-variants */
+
+  .content-answer-variants__title {
+    font-weight: 700;
+  }
+
+  .content-answer-variants__items {
+    margin-top: 8px;
+  }
+
+  .content-answer-variants__item {
+    background: #DEBFA0;
+    border-radius: 12px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  .content-answer-variants__item.short {
+    justify-content: space-between;
+    cursor: pointer;
+  }
+
+  .short-icon {
+    width: 24px;
+    height: 24px;
+    margin-left: 8px;
+    border-radius: 100%;
+    background: white;
+    color: #472B1F;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .content-answer-variants-link {
+    display: inline-block;
+    margin-top: 8px;
+    background: #472B1F;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 4px 20px 20px;
+    cursor: pointer;
+  }
+</style>
+
+<script>
+  jQuery(document).ready(function($) {
+    $('#chatbot-icon').click(function() {
+      $('#chatbot-widget').show();
+      $('body').css('position', 'fixed');
+    });
+
+    $('.js-close-icon').click(function() {
+      $('#chatbot-widget').hide();
+      $('body').css('position', 'static');
+    });
+
+
+    $('#js-input').on('input', function() {
+      $('.js-submit-btn').prop('disabled', !$(this).val());
+    });
+
+    $('#js-submit-form').submit(function() {
+      const $jsInput = $('#js-input');
+      const value = $jsInput.val();
+
+      if (value) {
+        const $jsContent = $('.js-content');
+        const $jsContentWrap = $('.js-content-wrap');
+        const $submitBtn = $('.js-submit-btn');
+
+        $jsContent.append(`
+        <div class="content-question-wrap js-content-question-wrap">
+          <div class="content-question">${value}</div>
+        </div>
+      `)
+
+        $jsInput
+            .val('')
+            .prop('readonly', true);
+        $submitBtn.prop('disabled', true);
+        $jsContentWrap.scrollTop($jsContent.height());
+
+        function handleSuccess(data) {
+          console.log('data', data);
+
+          $jsContent.append(`
+            <div class="content-answer content-answer-variants">
+              <div class="content-answer-variants__title">Вот что я нашел:</div>
+              <div class="content-answer-variants__items js-answer-items"></div>
+            </div>
+          `);
+
+          $jsItems = $('.js-answer-items');
+
+          data.map(({ answerText, url }, idx) => {
+            if (idx === 0) {
+              $jsItems.append(`
+                <div class="content-answer-variants__item">
+                  ${answerText}
+                </div>
+              `);
+            } else if (idx < 3) {
+              $jsItems.append(`
+                <div class="content-answer-variants__item short">
+                  ${answerText}
+                  <div class="short-icon">
+                    <i class="material-icons">chevron_right</i>
+                  </div>
+                </div>
+              `);
+            }
+          });
+
+          if (data.length > 3) {
+            $jsContent.append(`
+              <div>
+                <div class="content-answer-variants-link">
+                  Показать, что нашлось еще
+                </div>
+              </div>
+            `);
+          }
+
+          $jsContentWrap.scrollTop($jsContent.height());
+        }
+
+        function handleError(error) {
+          console.log('error', error);
+          $('.js-content-question-wrap').last().prepend(`
+            <i class="material-icons error-icon">error_outline</i>
+          `)
+        }
+
+        function handleFinally() {
+          $jsInput.prop('readonly', false);
+        }
+
+        $.ajax({
+          url: 'https://api.hacks-ai.ycdev.ru/api/v1/question/',
+          method: 'get',
+          dataType: 'json',
+          data: { q: value },
+          success: handleSuccess,
+          error: handleError,
+          complete: handleFinally,
+        });
+      }
+
+      return false;
+    });
+  });
+</script>
