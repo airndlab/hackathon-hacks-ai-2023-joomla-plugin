@@ -1,7 +1,11 @@
 jQuery(document).ready(function($) {
+  const $jsInput = $('#js-input');
+  const $submitBtn = $('.js-submit-btn');
+
   $('#chatbot-icon').click(function() {
     $('#chatbot-widget').show();
     $('body').css('position', 'fixed');
+    $jsInput.focus();
   });
 
   $('.js-close-icon').click(function() {
@@ -9,19 +13,23 @@ jQuery(document).ready(function($) {
     $('body').css('position', 'static');
   });
 
-
-  $('#js-input').on('input', function() {
-    $('.js-submit-btn').prop('disabled', !$(this).val());
+  $('.js-example').click(function() {
+    $jsInput.val($(this).text().trim())
+    $jsInput.focus();
+    $submitBtn.prop('disabled', false);
   });
 
-  $('#js-submit-form').submit(function() {
-    const $jsInput = $('#js-input');
+
+  $jsInput.on('input', function() {
+    $submitBtn.prop('disabled', !$(this).val());
+  });
+
+  $('#js-submit-form').submit(function(e) {
     const value = $jsInput.val();
 
     if (value) {
       const $jsContent = $('.js-content');
       const $jsContentWrap = $('.js-content-wrap');
-      const $submitBtn = $('.js-submit-btn');
 
       $('.js-content-answer-assistant').hide();
 
@@ -62,11 +70,15 @@ jQuery(document).ready(function($) {
             <div class="content-answer-wrap">
               <div class="content-answer">
                 ${data[0].answerText}
-                <div>
-                  <a class="content-answer-link" href="#">Перейти к описанию</a>
-                </div>
+                ${!data[0].isThanks && !data[0].isHello 
+                  ? `
+                    <div>
+                      <a class="content-answer-link" href="#">Перейти к описанию</a>
+                    </div>
+                  `
+                  : '' }
               </div>
-              ${buttons}
+              ${!data[0].isThanks && !data[0].isHello ? buttons : ''}
             </div>
           `);
         } else {
@@ -125,15 +137,48 @@ jQuery(document).ready(function($) {
         $jsInput.prop('readonly', false);
       }
 
-      $.ajax({
-        url: $(this).prop('action'),
-        method: 'get',
-        dataType: 'json',
-        data: { q: value },
-        success: handleSuccess,
-        error: handleError,
-        complete: handleFinally,
-      });
+      const trimmedValueSplit = $.trim(value).toLowerCase().split(' ');
+      const isThanks = trimmedValueSplit.some((word) => word === 'спасибо'
+        || word === 'спасиб'
+        || word === 'пасиб'
+        || word === 'пасибо'
+        || word === 'пасибо'
+        || word === 'благодарю'
+        || word === 'благодар'
+      );
+      const isHello = trimmedValueSplit.some((word, idx) => word === 'привет'
+        || word === 'приветствую'
+        || word === 'добрый'
+          && (trimmedValueSplit[idx + 1] === 'день'
+              || trimmedValueSplit[idx + 1] === 'вечер'
+          )
+        || word === 'доброе' && trimmedValueSplit[idx + 1] === 'утро'
+        || word === 'доброй' && trimmedValueSplit[idx + 1] === 'ночи'
+      );
+
+      if (isThanks || isHello) {
+        e.preventDefault();
+        handleSuccess([{
+          answerText: isThanks
+              ? 'Всегда рад помочь, обращайтесь почаще)'
+              : isHello
+                  ? 'Рад Вас приветствовать! Чем я могу вам помочь?'
+                  : '',
+          isThanks,
+          isHello,
+        }]);
+        handleFinally();
+      } else {
+        $.ajax({
+          url: $(this).prop('action'),
+          method: 'get',
+          dataType: 'json',
+          data: { q: value },
+          success: handleSuccess,
+          error: handleError,
+          complete: handleFinally,
+        });
+      }
     }
 
     return false;

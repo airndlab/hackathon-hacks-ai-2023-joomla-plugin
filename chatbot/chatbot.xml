@@ -4,7 +4,7 @@
     <creationDate>August 2023</creationDate>
     <author>Neuro Drive</author>
     <authorEmail>gravitaliy@mail.ru</authorEmail>
-    <version>1.0.7</version>
+    <version>1.0.8</version>
     <description>Чатбот</description>
     <files>
         <filename plugin="chatbot">chatbot.php</filename>
@@ -30,6 +30,24 @@
                     rows="3"
                     default="Напишите ваш запрос"
                     required="true"
+                />
+                <field
+                    name="example_1"
+                    type="textarea"
+                    label="Пример запроса 1"
+                    rows="3"
+                />
+                <field
+                    name="example_2"
+                    type="textarea"
+                    label="Пример запроса 2"
+                    rows="3"
+                />
+                <field
+                    name="example_3"
+                    type="textarea"
+                    label="Пример запроса 3"
+                    rows="3"
                 />
                 <field
                     name="url_api"

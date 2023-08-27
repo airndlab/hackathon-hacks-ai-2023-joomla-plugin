@@ -16,6 +16,27 @@
             <br><br>
             <?php echo $params->get('hello_text_additional', 'Напишите ваш запрос'); ?>
           </div>
+          <?php if ($params->get('example_1')) : ?>
+            <div>
+              <div class="content-answer-variants-link js-example">
+                <?php echo $params->get('example_1'); ?>
+              </div>
+            </div>
+          <?php endif; ?>
+          <?php if ($params->get('example_2')) : ?>
+            <div>
+              <div class="content-answer-variants-link js-example">
+                <?php echo $params->get('example_2'); ?>
+              </div>
+            </div>
+          <?php endif; ?>
+          <?php if ($params->get('example_3')) : ?>
+            <div>
+              <div class="content-answer-variants-link js-example">
+                <?php echo $params->get('example_3'); ?>
+              </div>
+            </div>
+          <?php endif; ?>
           <div class="content-answer-assistant js-content-answer-assistant">
             <img src="<?php echo JUri::base() . 'plugins/content/chatbot/assets/img/assistant.png' ?>" alt="">
           </div>
