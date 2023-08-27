@@ -32,6 +32,7 @@ jQuery(document).ready(function($) {
       const $jsContentWrap = $('.js-content-wrap');
 
       $('.js-content-answer-assistant').hide();
+      $('.js-content-typing-assistant').addClass('animated');
 
       $jsContent.append(`
         <div class="content-question-wrap js-content-question-wrap">
@@ -125,6 +126,9 @@ jQuery(document).ready(function($) {
         }
 
         $jsContentWrap.scrollTop($jsContent.height());
+        setTimeout(() => {
+          $('.js-content-typing-assistant').removeClass('animated');
+        }, 3000);
       }
 
       function handleError() {

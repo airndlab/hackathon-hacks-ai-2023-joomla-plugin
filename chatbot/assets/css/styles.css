@@ -184,6 +184,19 @@
   width: 200px;
 }
 
+.content-typing-assistant.animated {
+  animation: jump 1s infinite;
+}
+
+@keyframes jump {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
 @media (max-width: 1250px) {
   .content-typing-assistant {
     left: -180px;
