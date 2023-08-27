@@ -42,6 +42,40 @@
                     validate="url"
                     default="https://api.hacks-ai.ycdev.ru/api/v1/question/"
                 />
+                <field
+                    type="spacer"
+                    name="myspacer"
+                    label="
+                        &lt;hr/&gt;
+                        &lt;h4&gt;Обучение модели&lt;/h4&gt;
+                        &lt;br&gt;
+                        Для запуска дообучения модели перейдите по ссылке:
+                        &lt;a href='https://api.hacks-ai.ycdev.ru/api/v1/train' target='_blank'&gt;перейти&lt;/a&gt;
+                        &lt;hr/&gt;
+                    "
+                />
+                <field
+                    name="answer_count"
+                    type="number"
+                    default="1"
+                    label="Количество выдаваемых ответов"
+                    min="1"
+                />
+                <field
+                    name="relevance"
+                    type="number"
+                    label="Уровень доверия ответа"
+                    min="0"
+                    max="1"
+                    default="0.9"
+                    step="0.05"
+                />
+                <field
+                    name="staff_feedback"
+                    type="checkbox"
+                    label="Включить обратную связь от сотрудника"
+                    value="1"
+                />
             </fieldset>
         </fields>
     </config>
