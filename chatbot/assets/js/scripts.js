@@ -135,6 +135,7 @@ jQuery(document).ready(function($) {
         $('.js-content-question-wrap').last().prepend(`
             <i class="material-symbols-outlined error-icon">error_outline</i>
           `)
+        $('.js-content-typing-assistant').removeClass('animated');
       }
 
       function handleFinally() {
