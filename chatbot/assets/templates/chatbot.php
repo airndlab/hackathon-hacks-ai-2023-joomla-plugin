@@ -5,7 +5,7 @@
   <div id="chatbot-widget">
     <div class="chatbot-header">
       <div class="close-icon js-close-icon">
-        <i class="material-icons">close</i>
+        <i class="material-symbols-outlined">close</i>
       </div>
     </div>
     <div class="content-wrap js-content-wrap">
@@ -34,7 +34,7 @@
         >
           <input class="content-typing-input" id="js-input" type="text" placeholder="Введите запрос">
           <button class="content-typing-send-btn js-submit-btn" disabled>
-            <i class="material-icons">send</i>
+            <i class="material-symbols-outlined material-icons-filled">send</i>
           </button>
         </form>
       </div>
@@ -42,6 +42,6 @@
   </div>
 </div>
 
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <link rel="stylesheet" href="<?php echo JUri::base() . 'plugins/content/chatbot/assets/css/styles.css' ?>">
 <script src="<?php echo JUri::base() . 'plugins/content/chatbot/assets/js/scripts.js' ?>"></script>

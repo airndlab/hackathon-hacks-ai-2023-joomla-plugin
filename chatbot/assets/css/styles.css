@@ -2,6 +2,10 @@
   --content-max-width: 800px;
 }
 
+.material-icons-filled {
+  font-variation-settings: 'FILL' 1;
+}
+
 #chatbot-container {
   position: fixed;
   bottom: 20px;
@@ -9,8 +13,8 @@
 }
 
 #chatbot-icon {
-  width: 70px;
-  height: 70px;
+  width: 100px;
+  height: 100px;
   cursor: pointer;
 }
 
@@ -38,11 +42,10 @@
   justify-content: flex-end;
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1150px) {
   .chatbot-header {
     padding-top: 6px;
     padding-bottom: 6px;
-    backdrop-filter: blur(20px);
   }
 }
 
@@ -62,7 +65,7 @@
   background-color: #ffffff52;
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1150px) {
   .close-icon {
     margin-right: 18px;
   }
@@ -77,6 +80,13 @@
   justify-content: center;
 }
 
+@media (max-width: 1150px) {
+  .content-wrap {
+    margin-top: 48px;
+    height: calc(100vh - 88px - 48px);
+  }
+}
+
 .content {
   margin-top: auto;
   width: 100%;
@@ -86,6 +96,12 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
+}
+
+.content-answer-wrap {
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
 }
 
 .content-answer {
@@ -98,6 +114,31 @@
   padding: 8px 12px;
 }
 
+.content-answer-link {
+  color: #1976d2 !important;
+}
+.content-answer-link:hover {
+  text-decoration: underline;
+}
+
+.content-answer-like-dislike {
+  margin-left: 12px;
+  margin-bottom: 8px;
+  line-height: 1;
+}
+
+.content-answer-like-dislike > i {
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+  cursor: pointer;
+  color: white;
+}
+
+.content-answer-like-dislike.clicked > i {
+  cursor: auto;
+}
+
 .content-answer-assistant {
   display: none;
   margin-top: 8px;
@@ -105,7 +146,7 @@
   height: 88px;
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1150px) {
   .content-answer-assistant {
     display: block;
   }
@@ -140,16 +181,16 @@
   position: absolute;
   bottom: 10px;
   left: -216px;
-  width: 150px;
+  width: 200px;
 }
 
 @media (max-width: 1250px) {
   .content-typing-assistant {
-    left: -152px;
+    left: -180px;
   }
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1150px) {
   .content-typing-assistant {
     display: none;
   }
