@@ -1,11 +1,16 @@
 jQuery(document).ready(function($) {
   const $jsInput = $('#js-input');
   const $submitBtn = $('.js-submit-btn');
+  const $contentTypingImg = $('.js-content-typing-assistant');
 
   $('#chatbot-icon').click(function() {
     $('#chatbot-widget').show();
     $('body').css('position', 'fixed');
     $jsInput.focus();
+    $contentTypingImg.addClass('animated');
+    setTimeout(() => {
+      $contentTypingImg.removeClass('animated');
+    }, 3000);
   });
 
   $('.js-close-icon').click(function() {
@@ -32,7 +37,7 @@ jQuery(document).ready(function($) {
       const $jsContentWrap = $('.js-content-wrap');
 
       $('.js-content-answer-assistant').hide();
-      $('.js-content-typing-assistant').addClass('animated');
+      $contentTypingImg.addClass('animated');
 
       $jsContent.append(`
         <div class="content-question-wrap js-content-question-wrap">
@@ -127,7 +132,7 @@ jQuery(document).ready(function($) {
 
         $jsContentWrap.scrollTop($jsContent.height());
         setTimeout(() => {
-          $('.js-content-typing-assistant').removeClass('animated');
+          $contentTypingImg.removeClass('animated');
         }, 3000);
       }
 
@@ -135,7 +140,7 @@ jQuery(document).ready(function($) {
         $('.js-content-question-wrap').last().prepend(`
             <i class="material-symbols-outlined error-icon">error_outline</i>
           `)
-        $('.js-content-typing-assistant').removeClass('animated');
+        $contentTypingImg.removeClass('animated');
       }
 
       function handleFinally() {
@@ -144,21 +149,37 @@ jQuery(document).ready(function($) {
 
       const trimmedValueSplit = $.trim(value).toLowerCase().split(' ');
       const isThanks = trimmedValueSplit.some((word) => word === 'спасибо'
+        || word === 'спасибо!'
         || word === 'спасиб'
+        || word === 'спасиб!'
         || word === 'пасиб'
+        || word === 'пасиб!'
         || word === 'пасибо'
-        || word === 'пасибо'
+        || word === 'пасибо!'
         || word === 'благодарю'
+        || word === 'благодарю!'
         || word === 'благодар'
+        || word === 'благодар!'
       );
       const isHello = trimmedValueSplit.some((word, idx) => word === 'привет'
+        || word === 'привет!'
         || word === 'приветствую'
+        || word === 'приветствую!'
         || word === 'добрый'
-          && (trimmedValueSplit[idx + 1] === 'день'
+          && (
+              trimmedValueSplit[idx + 1] === 'день'
+              || trimmedValueSplit[idx + 1] === 'день!'
               || trimmedValueSplit[idx + 1] === 'вечер'
+              || trimmedValueSplit[idx + 1] === 'вечер!'
           )
-        || word === 'доброе' && trimmedValueSplit[idx + 1] === 'утро'
-        || word === 'доброй' && trimmedValueSplit[idx + 1] === 'ночи'
+        || word === 'доброе' && (
+            trimmedValueSplit[idx + 1] === 'утро'
+            || trimmedValueSplit[idx + 1] === 'утро!'
+          )
+        || word === 'доброй' && (
+              trimmedValueSplit[idx + 1] === 'ночи'
+              || trimmedValueSplit[idx + 1] === 'ночи!'
+          )
       );
 
       if (isThanks || isHello) {
